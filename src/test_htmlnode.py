@@ -3,26 +3,21 @@ from htmlnode import HTMLnode
 
 class TestTextNode(unittest.TestCase):
     def test_props(self):
-        node1 = HTMLnode("h1", "Hello World", None, {"href": "haatps://www.google.com", "target": "_blank"})
-        node2 = HTMLnode("a", "good morning", None, {"downlaod": "haatps://www.google.com/image", "target": "_blank"})
-        print("test props:")
-        print(node1.props_to_html())
-        print(node2.props_to_html())
-        print("--------------------------------")
+        node = HTMLnode("div", "divine orb", None, {"href": "https://google.de", "class": "moin"})
+
+        self.assertEqual(node.props_to_html(), 'href="https://google.de" class="moin"')
+    
+    def test_values(self):
+        node = HTMLnode("div", "divine orb", None, {"href": "https://google.de"})
+
+        self.assertEqual(node.tag, "div")
+        self.assertEqual(node.value, "divine orb")
+        self.assertEqual(node.children, None)
+        self.assertEqual(node.props, {"href": "https://google.de"})
     
     def test_repr(self):
-        node1 = HTMLnode("h1", "Hello World", None, {"href": "haatps://www.google.com", "target": "_blank"})
-        print("test print self:")
-        print(node1)
-        print("--------------------------------")
-
-    def test_children(self):
-        node1 = HTMLnode("h1", "Hello World", None, {"href": "haatps://www.google.com", "target": "_blank"})
-        node2 = HTMLnode("a", "good morning", [node1], {"downlaod": "haatps://www.google.com/image", "target": "_blank"})
-        print("test children:")
-        print(node2)
-        print(node1.props_to_html())
-        print("--------------------------------")
+        node = HTMLnode("a", "Sacred orb", None,{"href": "https://google.de", "class": "moin"})
+        self.assertEqual(node.__repr__(), "HTMLnode(tag=a, value=Sacred orb, children=None, props={'href': 'https://google.de', 'class': 'moin'})")
         
 
 
