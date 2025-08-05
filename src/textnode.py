@@ -38,6 +38,34 @@ def text_node_to_html_node(text_node):
         case TextType.LINK:
             return LeafNode("a", text_node.text,{"href": text_node.url})
         case TextType.IMAGE:
-            return LeafNode("img", None, {"src": text_node.url, "alt": text_node.text})
+            return LeafNode("img", "", {"src": text_node.url, "alt": text_node.text})
         case _:
             return "no case found"
+        
+        
+def split_nodes_delimiter(old_nodes, delimiter, text_type):
+    new_nodes = []           
+    for node in old_nodes:
+        if node.text_type != TextType.TEXT:
+            new_nodes.append(node)
+            continue
+        if node.text.count(delimiter) == 0:
+            new_nodes.append(node)
+            continue
+        if (node.text.count(delimiter) % 2) != 0:
+            raise Exception("delimiter not closed")
+        split_list = node.text.split(delimiter)
+        for i in range(len(split_list)):
+            if split_list[i] == "":
+                continue
+            if i % 2 == 0:
+                new_nodes.append(TextNode(split_list[i], TextType.TEXT))
+            else:
+                new_nodes.append(TextNode(split_list[i], text_type))
+    return new_nodes
+
+
+
+
+                
+    
