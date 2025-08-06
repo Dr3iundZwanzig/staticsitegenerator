@@ -21,3 +21,7 @@ class TestExtractMarkdown(unittest.TestCase):
         )
         self.assertEqual([("link", "https://i,imgur.com/cat.png")], matches)
         self.assertNotEqual([("link", "https://i,imgur.com/cat.png")], matches2)
+    
+    def test_extract_markdown_nothing(self):
+        matches = extract_markdown_images("!Nothing")
+        self.assertEqual([], matches)
