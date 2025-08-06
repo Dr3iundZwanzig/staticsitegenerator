@@ -103,7 +103,7 @@ def split_nodes_link(old_nodes):
         if node.text_type != TextType.TEXT:
             new_nodes.append(node)
             continue
-        extracted_list = extract_markdown_images(node.text)
+        extracted_list = extract_markdown_links(node.text)
         if len(extracted_list) == 0:
             new_nodes.append(node)
             continue
