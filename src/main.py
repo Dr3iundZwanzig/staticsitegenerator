@@ -9,7 +9,7 @@ def main():
     basepath = "/"
     if len(sys.argv) > 1:
         basepath = sys.argv[1]
-        
+
     static = "./static"
     public = "./docs"
     content = "./content"
