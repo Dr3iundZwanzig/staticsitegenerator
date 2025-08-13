@@ -6,10 +6,10 @@ from generate_page import generate_pages_recursive
 import sys
 
 def main():
-    basepath = sys.argv[1:]
-    if not basepath:
-        basepath = "/"
-
+    basepath = "/"
+    if len(sys.argv) > 1:
+        basepath = sys.argv[1]
+        
     static = "./static"
     public = "./docs"
     content = "./content"
